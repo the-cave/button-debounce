@@ -1,9 +1,12 @@
+// Copyright (c) 2018 Sarun Rattanasiri
+// under the MIT License https://opensource.org/licenses/MIT
+
 #ifndef uint8_t
 #define uint8_t unsigned char
 #endif
 
 #ifndef BUTTON_DEBOUNCE__CONFIRM
-#define BUTTON_DEBOUNCE__CONFIRM 100
+#define BUTTON_DEBOUNCE__CONFIRM 200
 #endif
 
 #ifndef __BUTTON_DEBOUNCE__
