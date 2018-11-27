@@ -47,6 +47,7 @@ void led_toggle() {
   GPIOB->ODR ^= 0x20;
 }
 ```
+See the whole project including Makefile and build instructions at https://github.com/midnight-wonderer/button-debounce-example
 
 ## License
 
