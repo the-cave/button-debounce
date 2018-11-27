@@ -6,7 +6,7 @@
 #endif
 
 #ifndef BUTTON_DEBOUNCE__CONFIRM
-#define BUTTON_DEBOUNCE__CONFIRM 200
+#define BUTTON_DEBOUNCE__CONFIRM 128
 #endif
 
 #ifndef __BUTTON_DEBOUNCE__
@@ -19,8 +19,8 @@ typedef enum _button_debounce__button_state {
 
 typedef struct _button_debounce__config {
   void (*state_changed)(ButtonDebounce_ButtonStatus state);
-  void (*rised)();
-  void (*falled)();
+  void (*rose)();
+  void (*fell)();
 } ButtonDebounce_Config;
 
 typedef enum _button_debounce__internal_status {
@@ -66,8 +66,8 @@ void button_debounce__sample(ButtonDebounce_Config* config,
       } else {
         if (state->confirmation_count++ > BUTTON_DEBOUNCE__CONFIRM) {
           state->status = _BUTTON_DEBOUNCE__LOW;
-          if (config->falled) {
-            config->falled();
+          if (config->fell) {
+            config->fell();
           }
           if (config->state_changed) {
             config->state_changed(BUTTON_DEBOUNCE__LOW);
@@ -79,8 +79,8 @@ void button_debounce__sample(ButtonDebounce_Config* config,
       if (button_state) {
         if (state->confirmation_count++ > BUTTON_DEBOUNCE__CONFIRM) {
           state->status = _BUTTON_DEBOUNCE__HIGH;
-          if (config->rised) {
-            config->rised();
+          if (config->rose) {
+            config->rose();
           }
           if (config->state_changed) {
             config->state_changed(BUTTON_DEBOUNCE__HIGH);

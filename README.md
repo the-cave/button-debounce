@@ -13,38 +13,45 @@ The example uses the library to detect button press signal and toggle the LED on
 #define STM8S103
 #include "stm8s.h"
 
-// it is a unconventional to include c directly without linking
-// but this method suite the embedded system more IMHO
-// this library design such that it is unlikely for name clashing
+// the library is namespaced, name clashing hardly occurs
+#define BUTTON_DEBOUNCE__CONFIRM 64
 #include "button_debounce.c"
 
 // configure callbacks
 const ButtonDebounce_Config button_c3_debounce_config = {
-    .falled = &led_toggle, // here we subscribe to "falled" event
-    // apart from "falled" there are "rised" and "state_changed"
+    .fell = &led_toggle, // "fell" event subscription
+    // apart from "fell"
+    // there are "rose" and "state_changed" events
 };
 static ButtonDebounce_State button_c3_debounce_state;
 
 int main() {
+  uint8_t prescaler;
+
   // configure pins
-  GPIOB->DDR = 0x20;
-  GPIOC->CR1 = 0x08;
-  GPIOB->ODR |= 0x20;
+  SetBit(GPIOB->DDR, 5);
+  SetBit(GPIOB->ODR, 5);
+  SetBit(GPIOC->CR1, 3);
 
   button_debounce__state_init(&button_c3_debounce_state);
 
-  for (;;) {
-    // keep sample (poll) the state of the button and feed it to
-    // the library
-    button_debounce__sample(&button_c3_debounce_config,
-                            &button_c3_debounce_state, GPIOC->IDR & 0x08);
+#define _PRESCALER_DIVIDE_64 (64 - 1)
+
+  for (prescaler = 0;; prescaler++) {
+    // sampling the state of the button on pin C3
+    if (!(prescaler & _PRESCALER_DIVIDE_64)) {
+      button_debounce__sample(
+        &button_c3_debounce_config,
+        &button_c3_debounce_state,
+        ValBit(GPIOC->IDR, 3)
+      );
+    }
   }
 }
 
-// subscribe to the event
 void led_toggle() {
-  // we just toggle an LED on pin B5 here
-  GPIOB->ODR ^= 0x20;
+  // toggle an LED on pin B5
+  ChgBit(GPIOB->ODR, 5);
 }
 ```
 See the whole project including Makefile and build instructions at https://github.com/midnight-wonderer/button-debounce-example
