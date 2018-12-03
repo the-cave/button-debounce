@@ -4,9 +4,7 @@
 #ifndef __BUTTON_DEBOUNCE_H
 #define __BUTTON_DEBOUNCE_H
 
-#ifndef uint8_t
-#define uint8_t unsigned char
-#endif
+typedef unsigned char uint8_t;
 
 #ifndef BUTTON_DEBOUNCE__CONFIRM
 #define BUTTON_DEBOUNCE__CONFIRM 128
