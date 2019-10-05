@@ -1,5 +1,6 @@
-// Copyright (c) 2018 Sarun Rattanasiri
-// under the MIT License https://opensource.org/licenses/MIT
+// Copyright (c) 2019 Sarun Rattanasiri
+// under the 3-Clause BSD License
+// https://opensource.org/licenses/BSD-3-Clause
 
 #include "button_debounce.h"
 
