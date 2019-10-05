@@ -29,9 +29,6 @@ void button_debounce__sample(ButtonDebounce_Config* config,
           if (config->fell) {
             config->fell();
           }
-          if (config->state_changed) {
-            config->state_changed(BUTTON_DEBOUNCE__LOW);
-          }
         }
       }
       break;
@@ -41,9 +38,6 @@ void button_debounce__sample(ButtonDebounce_Config* config,
           state->status = _BUTTON_DEBOUNCE__HIGH;
           if (config->rose) {
             config->rose();
-          }
-          if (config->state_changed) {
-            config->state_changed(BUTTON_DEBOUNCE__HIGH);
           }
         }
       } else {
@@ -62,9 +56,6 @@ void button_debounce__sample(ButtonDebounce_Config* config,
       if (button_state) {
         if (state->confirmation_count++ > BUTTON_DEBOUNCE__CONFIRM) {
           state->status = _BUTTON_DEBOUNCE__HIGH;
-          if (config->state_changed) {
-            config->state_changed(BUTTON_DEBOUNCE__HIGH);
-          }
         }
       } else {
         state->status = _BUTTON_DEBOUNCE__UNKNOWN;
@@ -76,9 +67,6 @@ void button_debounce__sample(ButtonDebounce_Config* config,
       } else {
         if (state->confirmation_count++ > BUTTON_DEBOUNCE__CONFIRM) {
           state->status = _BUTTON_DEBOUNCE__LOW;
-          if (config->state_changed) {
-            config->state_changed(BUTTON_DEBOUNCE__LOW);
-          }
         }
       }
   }

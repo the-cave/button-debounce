@@ -11,15 +11,9 @@
 #define BUTTON_DEBOUNCE__CONFIRM 128
 #endif
 
-typedef enum _button_debounce__button_status {
-  BUTTON_DEBOUNCE__LOW,
-  BUTTON_DEBOUNCE__HIGH,
-} ButtonDebounce_ButtonStatus;
-
 typedef struct _button_debounce__config {
-  void (*state_changed)(ButtonDebounce_ButtonStatus state);
-  void (*rose)();
-  void (*fell)();
+  void (*rose)(void);
+  void (*fell)(void);
 } ButtonDebounce_Config;
 
 typedef enum _button_debounce__internal_status {
