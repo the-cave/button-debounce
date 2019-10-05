@@ -1,9 +1,6 @@
 // Copyright (c) 2018 Sarun Rattanasiri
 // under the MIT License https://opensource.org/licenses/MIT
 
-#ifndef __BUTTON_DEBOUNCE_C
-#define __BUTTON_DEBOUNCE_C
-
 #include "button_debounce.h"
 
 void button_debounce__sample(ButtonDebounce_Config* config,
@@ -85,5 +82,3 @@ void button_debounce__sample(ButtonDebounce_Config* config,
       }
   }
 }
-
-#endif
