@@ -1,0 +1,3 @@
+[submodule "utilities/builder"]
+	path = utilities/builder
+	url = https://github.com/midnight-wonderer/universal-stm8-builder.git
