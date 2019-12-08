@@ -2,7 +2,8 @@
 
 ## What is it?
 
-Button Debounce is a library to handle [contact bounce](https://en.wikipedia.org/wiki/Switch#Contact_bounce) in your microcontroller system circuit. It build with event driven architecture, non-blocking execution, only standard C, platform and hardware independent. And I hope you'd enjoy it.
+Button Debounce is a library to handle [contact bounce](https://en.wikipedia.org/wiki/Switch#Contact_bounce) in your microcontroller system circuit. It build with event driven architecture, non-blocking execution, only standard C, platform and hardware independent. And I hope you'd enjoy it.  
+I also write up about this library on [Slime Systems](https://slime.systems/content/the-best-contact-debouncer/), be sure to check it out.
 
 ## How to use this?
 
